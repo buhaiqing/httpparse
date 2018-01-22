@@ -183,12 +183,12 @@ func (h *HttpTrafficHandler) printRequest(req *httpport.Request) {
 		return
 	}
 
-	h.writeLine()
-	h.writeLine(strings.Repeat("*", 10), h.key.srcString(), " -----> ", h.key.dstString(), strings.Repeat("*", 10))
-	h.writeLine(req.RequestLine)
-	for _, header := range req.RawHeaders {
-		h.writeLine(header)
-	}
+	// h.writeLine()
+	// h.writeLine(strings.Repeat("*", 10), h.key.srcString(), " -----> ", h.key.dstString(), strings.Repeat("*", 10))
+	// h.writeLine(req.RequestLine)
+	// for _, header := range req.RawHeaders {
+	// 	h.writeLine(header)
+	// }
 
 	var hasBody = true
 	if req.ContentLength == 0 || req.Method == "GET" || req.Method == "HEAD" || req.Method == "TRACE" ||
@@ -196,15 +196,15 @@ func (h *HttpTrafficHandler) printRequest(req *httpport.Request) {
 		hasBody = false
 	}
 
-	if h.config.level == "header" {
-		if hasBody {
-			h.writeLine("\n{body size:", tcpreader.DiscardBytesToEOF(req.Body),
-				", set [level = all] to display http body}")
-		}
-		return
-	}
+	// if h.config.level == "header" {
+	// 	if hasBody {
+	// 		h.writeLine("\n{body size:", tcpreader.DiscardBytesToEOF(req.Body),
+	// 			", set [level = all] to display http body}")
+	// 	}
+	// 	return
+	// }
 
-	h.writeLine()
+	// h.writeLine()
 	h.printBody(hasBody, req.Header, req.Body)
 }
 
@@ -215,25 +215,25 @@ func (h *HttpTrafficHandler) printResponse(resp *httpport.Response) {
 		return
 	}
 
-	h.writeLine(resp.StatusLine)
-	for _, header := range resp.RawHeaders {
-		h.writeLine(header)
-	}
+	// h.writeLine(resp.StatusLine)
+	// for _, header := range resp.RawHeaders {
+	// 	h.writeLine(header)
+	// }
 
 	var hasBody = true
 	if resp.ContentLength == 0 || resp.StatusCode == 304 || resp.StatusCode == 204 {
 		hasBody = false
 	}
 
-	if h.config.level == "header" {
-		if hasBody {
-			h.writeLine("\n{body size:", tcpreader.DiscardBytesToEOF(resp.Body),
-				", set [level = all] to display body content}")
-		}
-		return
-	}
+	// if h.config.level == "header" {
+	// 	if hasBody {
+	// 		h.writeLine("\n{body size:", tcpreader.DiscardBytesToEOF(resp.Body),
+	// 			", set [level = all] to display body content}")
+	// 	}
+	// 	return
+	// }
 
-	h.writeLine()
+	// h.writeLine()
 	h.printBody(hasBody, resp.Header, resp.Body)
 }
 
