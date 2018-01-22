@@ -97,7 +97,7 @@ func (h *HttpTrafficHandler) handle(connection *TcpConnection) {
 
 		if !filtered {
 			h.printRequest(req)
-			h.writeLine("")
+			// h.writeLine("")
 		}
 
 		// if is websocket request,  by header: Upgrade: websocket
