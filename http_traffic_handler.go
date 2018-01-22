@@ -304,14 +304,15 @@ func (h *HttpTrafficHandler) printBody(hasBody bool, header httpport.Header, rea
 
 	// prettify json
 	if mimeType.subType == "json" || likeJSON(body) {
-		var jsonValue interface{}
+		var jsonValue []map[string]interface{}
+		// var jsonValue interface{}
 		json.Unmarshal([]byte(body), &jsonValue)
+		
 		// body = string(jsonValue.(string))
 		// prettyJSON, err := json.MarshalIndent(jsonValue, "", "    ")
-		prettyJSON, err := json.MarshalIndent(jsonValue, "", "")
-		if err == nil {
-			body = string(prettyJSON)
-		}
+		// if err == nil {
+		// 	body = string(prettyJSON)
+		// }
 	}
 	h.writeLine(body)
 	h.writeLine()
