@@ -315,7 +315,7 @@ func (h *HttpTrafficHandler) printBody(hasBody bool, header httpport.Header, rea
 		// }
 	}
 	h.writeLine(body)
-	h.writeLine()
+	// h.writeLine()
 }
 
 func (h *HttpTrafficHandler) printNonTextTypeBody(reader io.Reader, contentType string, isBinary bool) error {
