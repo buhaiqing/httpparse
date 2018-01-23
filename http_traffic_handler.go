@@ -120,7 +120,7 @@ func (h *HttpTrafficHandler) handle(connection *TcpConnection) {
 		}
 		if !filtered {
 			h.printResponse(resp)
-			// h.printer.send(h.buffer.String())
+			h.printer.send(h.buffer.String())
 		}
 
 		if websocket {
